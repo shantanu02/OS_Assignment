@@ -1,0 +1,260 @@
+Ques1 : 
+
+for i in {1..10}
+do
+        mkdir a$i
+done
+
+Ques2 :
+
+echo "Please enter your choice"
+read ch
+echo ""
+case $ch in
+        1)
+                echo "Enter String : "
+                read str
+                length=${#str}
+                echo "Length of $str is $length";;
+        2)
+                echo "Enter String : "
+                read str
+                cpystr=$str
+                echo "copied string is $cpystr ";;
+        3)
+                echo "Enter first string :"
+                read str1
+                echo "Enter second string :"
+                read str2
+                resultstr="$str1$str2"
+                echo "$resultstr";;
+        4)
+                echo "Enter first string :"
+                read str1
+                echo "Enter second string :"
+                read str2
+                if [ $str1 != $str2 ];then
+                        echo "$str1 is not equal to  $str2"
+                else
+                        echo "$str1 is same as $str2"
+                fi;;
+        5)
+                echo "Enter a String :"
+                read str
+                len=${#str}
+                for ((i=$len-1;i>=0;i--))
+                do
+                        reverse=$str | rev
+                done
+                        echo "$reverse"
+
+                ;;
+        *)
+                echo "Invalid Option"
+esac
+
+Ques3 
+
+ls -v | cat -n | while read n shantanu; do mv -n "$shantanu" "$n shantanu.ext"; done
+
+Ques4 
+
+echo $HOME
+echo $PATH
+echo $SHELL
+echo $HISTORY
+echo $LOGNAME
+echo $TERM
+
+Ques5
+
+ls -l
+
+Ques6
+
+ls -l | cut -d ' ' -f 1
+
+Ques7
+
+ls -s
+
+
+========================================================================================================
+
+Ques1
+
+echo "enter Year :"
+read yr
+if [ $((yr%400)) -eq 0 ];then
+        echo "leap year"
+else if [ $((yr%100)) -ne 0 ];then
+        echo "Not a leap year"
+else if [ $((yr%4)) -eq 0 ];then
+        echo "Leap Year"
+else
+        echo "not a leap year"
+fi
+
+Ques2
+
+a)
+
+b)
+echo "Enter the number of day"
+read daynum
+case $daynum in
+        1) echo "Monday";;
+        2) echo "Tuesday";;
+        3) echo "Wednessday";;
+        4) echo "Thursday";;
+        5) echo "Friday";;
+        6) echo "Saturday";;
+        7) echo "Sunday";;
+        *) echo "Invalid Input";;
+esac
+
+Ques3
+
+a)
+echo "Enter first number "
+read n1
+echo "Enter Second number"
+read n2
+echo "Enter third number"
+read n3
+if [ $n1 -gt $n2 ] && [ $n1 -gt $n3 ];then
+        echo "$n1 is the gratest number"
+elif [ $n2 -gt $n1 ] && [ $n2 -gt $n3 ];then
+        echo "$n2 is the greatest number"
+else
+        echo "$n3 is the greatest"
+
+fi
+                                                                                                          
+b)
+echo "Enter first number"
+read n1
+echo "Enter second number"
+read n2
+echo "Enter third number"
+read n3
+find_avg()
+{
+        sum=`expr $n1 + $n2 + $n3`
+        avg=`expr $sum / 3`
+        echo "Average is $avg"
+}
+
+find_avg
+
+
+Ques4
+
+echo "Enter number "
+read n1
+rem=$(( $n1 % 2))
+if [ $rem -eq 0 ];then
+        echo "$n1 is even"
+else
+	echo "$n1 is odd"
+fi
+
+Ques5
+
+
+
+
+Ques6
+
+echo "Enter two numbers"
+read num1 num2
+sum =`expr $num1 + $num2`
+echo "The sum is = $sum"
+pro =`expr $num1 * $num2`
+echo "The product is = $pro"
+
+
+echo $(( $num1 + $num2 ))
+echo $(( $num1 * $num2 ))
+
+
+Ques7
+
+N=6
+a=0
+b=1  
+   
+echo "The Fibonacci series is : "
+   
+for (( i=0; i<N; i++ )) 
+do
+    echo -n "$a "
+    fn=$((a + b)) 
+    a=$b 
+    b=$fn 
+done
+
+
+Ques8
+
+
+echo "Enter a String :"
+read str
+reverse=$str | rev
+echo "$reverse"
+
+
+Ques9
+
+
+
+Ques10
+
+
+echo "Enter number : "
+read n 
+sd=0
+rev="" 
+on=$n
+while [ $n -gt 0 ]
+do
+    sd=$(( $n % 10 )) 
+    n=$(( $n / 10 ))  
+    rev=$( echo ${rev}${sd} ) 
+done
+ 
+echo  "$on in a reverse order $rev"
+
+
+
+================================================================================================
+
+
+
+Ques1
+
+echo "enter the password"
+read password
+len="${#password}"
+if test $len -ge 8 ; then
+    echo "$password" | grep -q [0-9]
+     if test $? -eq 0 ; then
+           echo "$password" | grep -q [A-Z]
+                if test $? -eq 0 ; then
+                    echo "$password" | grep -q [a-z]   
+                      if test $? -eq 0 ; then
+                       echo "Strong password"
+                   else
+                      echo "weak password include lower case char"
+                   fi
+            else
+              echo "weak password include capital char" 
+            fi
+     else
+       echo "please include the numbers in password it is weak password"   
+     fi
+else
+    echo "password lenght should be greater than or equal 8 hence weak password"
+fi
+
+
