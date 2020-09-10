@@ -1,0 +1,88 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Process
+{
+  int pid;
+  int bt;
+  int priority;
+};
+
+bool
+sortP (Process A, Process B)
+{
+  return (A.priority < B.priority);
+}
+
+void
+wait_time (Process p[], int n, int wt[])
+{
+  wt[0] = 0;
+  for (int i = 1; i < n; i++)
+    {
+      wt[i] =  p[i-1].bt + wt[i-1];
+    }
+}
+
+void
+turn_around (Process p[], int n, int wt[], int tat[])
+{
+  for (int i = 0; i < n; i++)
+    {
+      tat[i] =p[i].bt + wt[i];
+    }
+}
+
+void
+avg (Process p[], int n)
+{
+  int wt[n];
+  int tat[n];
+  int t_wt = 0;
+  int t_tat = 0;
+
+  wait_time (p, n, wt);
+  turn_around (p, n, wt, tat);
+  
+ cout << "   " << "PID" << "   " << "Brust" << "   " << "Wait" << "   "
+	<< "TAT" << endl;
+  for (int i = 0; i < n; i++)
+    {
+      t_wt = t_wt + wt[i];
+      t_tat = t_tat + tat[i];
+     
+      cout << "     " << p[i].pid << "     " << p[i].
+	bt << "     " << wt[i] << "     " << tat[i] << endl;
+    }
+
+  cout << "Average wait time =  " << (float)t_wt / (float)n << endl;
+  cout << "Average turn around time =  " << (float)t_tat / (float)n << endl;
+}
+
+void
+priority_sch (Process p[], int n)
+{
+  sort (p, p + n, sortP);
+  
+  cout << "Order is :" << endl;
+  
+  for (int i = 0; i < n; i++)
+    {
+      cout <<p[i].pid <<endl;;
+      
+    }
+    cout<<endl;
+
+    avg (p, n);
+}
+
+
+
+int
+main ()
+{
+  Process p[] = {{1, 10, 2}, {2, 5, 0}, {3, 8, 1}};
+  int n = 3;
+  priority_sch (p, n);
+  return 0;
+}
