@@ -1,9 +1,12 @@
 Ques1 : 
 
-for i in {1..10}
-do
-        mkdir a$i
-done
+
+  echo "Enter no."
+  read num
+  for((i=1 ;i<=num; i++))
+  do
+          mkdir a$i
+  done
 
 Ques2 :
 
@@ -68,7 +71,8 @@ echo $TERM
 
 Ques5
 
-ls -l
+> ls -la | cut -b 1-10
+> ls -la | cut -c 1-10
 
 Ques6
 
@@ -76,7 +80,7 @@ ls -l | cut -d ' ' -f 1
 
 Ques7
 
-ls -s
+ls -l | awk '{ print $1 }' 
 
 
 ========================================================================================================
@@ -98,6 +102,33 @@ fi
 Ques2
 
 a)
+	echo 'Enter the no of Day : '
+	read day
+
+	if [ $day == 1 ]
+	then
+		echo 'Sunday'
+	elif [ $day == 2 ]
+	then
+		echo 'Monday'
+	elif [ $day == 3 ]
+	then
+		echo 'Tuesday'
+	elif [ $day == 4 ]
+	then
+		echo 'Wednesday'
+	elif [ $day == 5 ]
+	then
+		echo 'Thrusday'
+	elif [ $day == 6 ]
+	then
+		echo 'Friday'
+	elif [ $day == 7 ]
+	then
+		echo 'Saturday'
+	else
+		echo 'Invalid Entry'
+	fi
 
 b)
 echo "Enter the number of day"
@@ -161,7 +192,14 @@ fi
 
 Ques5
 
+mon=$(date | awk '{print $3}')
+	year=$(date | awk '{print $4}')
 
+	let "prev=year-1" "next=year+1"
+
+	cal $mon $prev
+	cal $mon $year
+	cal $mon $next
 
 
 Ques6
@@ -177,6 +215,17 @@ echo "The product is = $pro"
 echo $(( $num1 + $num2 ))
 echo $(( $num1 * $num2 ))
 
+#!/bin/bash
+
+	echo 'Enter num1 : '
+	read num1
+	echo 'Enter num2 : '
+	read num2
+	echo 'Enter num3 : '
+	read num3
+
+	(( avg = (( $num1+$num2+$num3 ))/3 ))
+	echo 'Average : '$avg
 
 Ques7
 
@@ -205,6 +254,35 @@ echo "$reverse"
 
 
 Ques9
+	echo 'Enter array of Strings : '
+	read -a arr
+
+	min=0
+	max=`expr ${#arr[@]} - 1`
+	x=$max
+	while (( $min <= $max ))
+	do
+		newArr[$min]=${arr[$max]}
+		newArr[$max]=${arr[$min]}
+		(( min++ ))
+		(( max-- ))
+	done
+
+	max=$x
+
+	for (( i=0; i<=max; i++ ))
+	do
+		rev=""
+		str=${newArr[$i]}
+		let "len=${#str} -1"
+		for (( j=$len; j>=0; j-- ))
+		do
+			rev="$rev${str:$j:1}"
+		done
+		newArr[$i]=$rev
+	done
+
+	echo ${newArr[@]}
 
 
 
