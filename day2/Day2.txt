@@ -91,9 +91,9 @@ echo "enter Year :"
 read yr
 if [ $((yr%400)) -eq 0 ];then
         echo "leap year"
-else if [ $((yr%100)) -ne 0 ];then
+elif [ $((yr%100)) -ne 0 ];then
         echo "Not a leap year"
-else if [ $((yr%4)) -eq 0 ];then
+elif [ $((yr%4)) -eq 0 ];then
         echo "Leap Year"
 else
         echo "not a leap year"
